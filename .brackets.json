@@ -1,0 +1,6 @@
+{
+    "jscodehints.detectedExclusions": [
+        "C:/dev/projects/Polytracer/polytracer-platform/www/lib/ng-cordova/dist/ng-cordova.min.js",
+        "C:/dev/projects/Polytracer/polytracer-platform/www/js/app.js"
+    ]
+}

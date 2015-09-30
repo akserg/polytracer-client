@@ -1,0 +1,32 @@
+/* Empty. Add your own CSS if you like */
+
+/*@import url(http://fonts.googleapis.com/css?family=Josefin+Sans);
+* {
+    font-family: 'Josefin Sans', sans-serif;
+}*/
+.bar {
+    background-color: #27ae60 !important;
+}
+.scroll-content {
+    background-color: #2ecc71;
+}
+.sum {
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+}
+.sum > span {
+    color: #fff;
+    font-weight: 100;
+    font-size: 60%;
+    vertical-align: text-top;
+}
+.qrcode {
+    display: block;
+    margin: 0px auto 10px;
+    max-width: 60%;
+}
+.key {
+    color: #fff;
+    font-size: 15px;
+}

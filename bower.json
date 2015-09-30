@@ -1,0 +1,19 @@
+{
+  "name": "polytracer-client",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#master"
+  },
+  "dependencies": {
+    "angular-cookies": "~1.4.3",
+    "ngstorage": "~0.3.7",
+    "angularfire": "~1.1.2",
+    "firebase": "~2.2.9",
+    "angular-qrcode": "monospaced/angular-qrcode#~6.0.3",
+    "angular-localforage": "~1.2.3",
+    "ngCordova": "~0.1.20-alpha"
+  },
+  "resolutions": {
+    "angular": "1.4.4"
+  }
+}

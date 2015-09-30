@@ -1,0 +1,42 @@
+<ion-view view-title="Polytracer">
+    <ion-nav-title>
+      <h2 class="title">Polytracer {{device.name}}</h2>
+    </ion-nav-title>
+    <ion-content scroll='true' class="padding">
+        <div ng-if="deviceKey">
+            <div class="row">
+                <div class="col col-25"><span>Latitude</span></div>
+                <div class="col col-75"><span class="sum">{{device.location.latitude}}</span></div>
+            </div>
+            <div class="row">
+                <div class="col col-25"><span>Lontitude</span></div>
+                <div class="col col-75"><span class="sum">{{device.location.longitude}}</span></div>
+            </div>
+            <div class="row">
+                <div class="col col-25"><span>Accuracy</span></div>
+                <div class="col col-75"><span class="sum">{{device.location.accuracy | number: 0}}</span></div>
+            </div>
+
+            <div class="row">
+                <div class="col col-25"><span>Speed</span></div>
+                <div class="col col-75"><span class="sum">{{device.location.speed | number: 0}}</span></div>
+            </div>
+            <div class="row">
+                <div class="col col-25"><span>Heading</span></div>
+                <div class="col col-75"><span class="sum">{{device.location.bearing | number: 0}}</span></div>
+            </div>
+        </div>
+
+        <div ng-if="!deviceKey">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <input type="text" placeholder="Device Name" ng-model="device.name">
+                </label>
+            </div>
+            <button ng-click="enable()" class="button button-block button-balanced">
+                Enable Device
+            </button>
+        </div>
+    </ion-content>
+
+</ion-view>
