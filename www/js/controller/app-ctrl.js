@@ -1,7 +1,7 @@
 angular.module('client')
 
-.controller('AppCtrl', ['$scope', 'LoadingService', '$ionicPlatform', 'DeviceService', '$ionicPopup', 'Toast', '$cordovaClipboard', 'BackgroundGeolocationService',
-  function($scope, LoadingService, $ionicPlatform, DeviceService, $ionicPopup, Toast, $cordovaClipboard, BackgroundGeolocationService) {
+.controller('AppCtrl', ['$scope', 'LoadingService', '$ionicPlatform', 'DeviceService', '$ionicPopup', 'Toast', '$cordovaClipboard', 'BackgroundGeolocationService', 'FencingService',
+  function($scope, LoadingService, $ionicPlatform, DeviceService, $ionicPopup, Toast, $cordovaClipboard, BackgroundGeolocationService, FencingService) {
 
     $scope.device = {};
     $scope.config = {
@@ -30,6 +30,8 @@ angular.module('client')
         //
         BackgroundGeolocationService.start($device.$id, savePosition, errorHandler);
         BackgroundGeolocationService.changePace($scope.config.aggressive);
+        //
+        startWatchFencing($scope.deviceKey);
     };
 
     // Update comes for IOS devices only
@@ -43,6 +45,8 @@ angular.module('client')
         $scope.device.location.speed = position.speed;
         $scope.device.location.accuracy = position.accuracy;
         $scope.device.location.bearing = position.heading;
+        //
+        checkFencings($scope.device);
     }
 
     function errorHandler(err) {
@@ -68,6 +72,7 @@ angular.module('client')
         if(res) {
           // Must be deleted
           DeviceService.reset().then(function () {
+              stopWatchFencing($scope.deviceKey);
               // Stop geolocation
               BackgroundGeolocationService.stop();
               // This one cancels event listeners and frees memory used by this object (deletes the local data).
@@ -97,4 +102,31 @@ angular.module('client')
         Toast.show(error.message ? error.message : error, 'short', 'bottom');
       }
     };
+
+    //********
+    // Fencing
+    //********
+    $scope.$fencings = [];
+    function startWatchFencing(deviceId) {
+      $scope.$fencings = FencingService.fencings(deviceId);
+    }
+
+    function checkFencings($device) {
+      angular.forEach($scope.$fencings, function($fencing, key) {
+        if (check($device, $fencing)) {
+          // inside
+        } else {
+          // outside
+        }
+      }, this);
+    }
+
+    function stopWatchFencing(deviceId) {
+      $scope.$fencings = [];
+    }
+
+    function check($device, $fencing) {
+      return true;
+    }
+
 }]);
